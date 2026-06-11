@@ -1078,6 +1078,7 @@
       var window: UIWindow?
       if #available(iOS 13.0, *),
         let keyWindow = UIApplication.sharedIfAvailable?.connectedScenes
+          .filter({ $0.activationState == .foregroundActive || $0.activationState == .foregroundInactive })
           .compactMap({ $0 as? UIWindowScene })
           .flatMap({ $0.windows })
           .first(where: { $0.isKeyWindow })
